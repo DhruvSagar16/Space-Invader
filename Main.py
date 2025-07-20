@@ -14,7 +14,7 @@ background = pygame.image.load('background.png')
 
 #Background sound
 mixer.music.load('background.wav')
-mixer.music.play(-1) # By doing -1  will play the background music continuously
+mixer.music.play(-1)
 
 # Caption and Icon
 pygame.display.set_caption("Space Invaders")  # This will set the caption("Space Invaders") when the window is running [see at top left of window for caption.]
@@ -44,12 +44,12 @@ for i in range(num_of_enemies):
 
 # Bullet
 
-# ready state - You cant see the bullet  on th screen
+# ready state - You cant see the bullet  on thE screen
 # Fire state - The bullet is currently moving
 
 bullet_img = pygame.image.load(('bullet.png'))
 bulletX = 0
-bulletY = 480  # 480 isliye daala hai kyu ki spaceship ka y coordinate bhi 480 par hai isliye.
+bulletY = 480  
 bulletX_change = 0
 bulletY_change = 10
 bullet_state = "ready"
@@ -81,7 +81,7 @@ def enemy(x,y,i):
 def fire_bullet(x,y):
     global bullet_state   # by using global we can access the value of  bullet_state inside this function.
     bullet_state = "fire"
-    screen.blit(bullet_img, (x + 16, y + 10)) #16 & 10 issliye add kiya kyu ki bullet thoda left side par fire ho raha tha instead of center se fire hona chaiye.
+    screen.blit(bullet_img, (x + 16, y + 10)) 
 
 def isCollision(enemyX,enemyY,bulletX,bulletY):
     distance = math.sqrt((math.pow(enemyX-bulletX,2)) + (math.pow(enemyY - bulletY, 2))) # applied the distance formula. distance = √[(x2 − x1)2 + (y2 − y1)2]
@@ -110,10 +110,10 @@ while running:
             if event.key == pygame.K_RIGHT:
                 playerX_change = 3
             if event.key == pygame.K_SPACE:
-                if bullet_state == "ready": # kyuki repeated spacebar click karne se bullet mid fire mai hi change ho raha tha ,iss hi liye yeh condition add karne ke baad bullet sirf tabhi hi fire hogi jabhi vo x coordinate touch hogi and then regenerate ho kar fire hoga.
+                if bullet_state == "ready":
                     bullet_sound = mixer.Sound('laser.wav')
                     bullet_sound.play()
-                    bulletX = playerX   #(Gets the x coordinate of the spaceship) because bullet spaceship ke sath upar jaa raha tha fire hone ke baad, yeh karne se bullet spaceship ke position se hi nikle ga par spaceship move hoga toh bullet uske sath move nai hoga uske badle vo jis jagah fire huva tha uss jagah se hi travel karega.
+                    bulletX = playerX   
                     fire_bullet(bulletX,bulletY)  # playerX = This is the current position of player[x-coordinate of spaceship] and bulletY =Its the y coordinate of bullet.
 
         if event.type == pygame.KEYUP:  # THIS is used when the key that is pressed is released.
@@ -125,7 +125,7 @@ while running:
 
     if playerX <= 0:
         playerX = 0
-    elif playerX >= 736:   # 800 - 64 = 736 kyu ki 64 size hai spaceship ka & agar 800 rakhege toh vo window ke bahar jaiga.
+    elif playerX >= 736:  
         playerX = 736
 
     # Enemy movement.
@@ -161,7 +161,7 @@ while running:
     # Bullet movement
     if bullet_state == "fire":
         fire_bullet(bulletX,bulletY)
-        bulletY -= bulletY_change # bullet ko upward direction mai move karne ke liye -= bulletY_change yeh kiya (refer ss of the window for y coordinate)
+        bulletY -= bulletY_change 
     if bulletY <= 0:
         bulletY = 480
         import math
